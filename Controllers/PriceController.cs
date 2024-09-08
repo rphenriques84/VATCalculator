@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
-using System.ComponentModel.DataAnnotations;
+//using Microsoft.OpenApi.Models;
+//using System.ComponentModel.DataAnnotations;
 using VATCalculator.Models;
 using VATCalculator.Repositories.Interfaces;
 using VATCalculator.Validation;
@@ -8,12 +8,19 @@ using VATCalculator.Validation;
 
 namespace VATCalculator.Controllers
 {
+    /// <summary>
+    /// Controller for VAT calculations
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class PriceController : ControllerBase
     {
         private readonly IPriceCalculatorRepository _priceCalculatorRepository;
 
+        /// <summary>
+        /// PriceController constructor
+        /// </summary>
+        /// <param name="priceCalculatorRepository">VAT calculation logic repository</param>
         public PriceController(IPriceCalculatorRepository priceCalculatorRepository)
         {
             _priceCalculatorRepository = priceCalculatorRepository;
@@ -24,13 +31,13 @@ namespace VATCalculator.Controllers
         /// </summary>
         /// <param name="percentVAT">VAT percentile value</param>
         /// <param name="priceBase">Price without VAT included</param>
-        /// <returns>test return CalcByPriceBase</returns>
+        /// <returns>PriceModel instance with all VAT calculated values</returns>
         [HttpGet("CalcByPriceBase")]
         public ActionResult<PriceModel> CalcByPriceBase(
-            [FromQuery, PositiveDecimalAttribute(ErrorMessage = "VAT percentile must be a number greater than zero")]
+            [FromQuery, PositiveDecimal(ErrorMessage = "VAT percentile must be a number greater than zero")]
             decimal percentVAT,
 
-            [FromQuery, PositiveDecimalAttribute(ErrorMessage = "Base price must be a number greater than zero")]
+            [FromQuery, PositiveDecimal(ErrorMessage = "Base price must be a number greater than zero")]
             decimal priceBase)
         {
             var priceItem = _priceCalculatorRepository.CalcByPriceBase(percentVAT, priceBase);
@@ -43,13 +50,13 @@ namespace VATCalculator.Controllers
         /// </summary>
         /// <param name="percentVAT">VAT percentile value</param>
         /// <param name="vatAmount">VAT monetary amount value</param>
-        /// <returns>test return CalcByVatAmount</returns>
+        /// <returns>PriceModel instance with all VAT calculated values</returns>
         [HttpGet("CalcByVatAmount")]
         public ActionResult<PriceModel> CalcByVatAmount(
-            [FromQuery, PositiveDecimalAttribute(ErrorMessage = "VAT percentile must be a number greater than zero")]
+            [FromQuery, PositiveDecimal(ErrorMessage = "VAT percentile must be a number greater than zero")]
             decimal percentVAT,
 
-            [FromQuery, PositiveDecimalAttribute(ErrorMessage = "VAT amount must be a number greater than zero")]
+            [FromQuery, PositiveDecimal(ErrorMessage = "VAT amount must be a number greater than zero")]
             decimal vatAmount)
         {
             var priceItem = _priceCalculatorRepository.CalcByVatAmount(percentVAT, vatAmount);
@@ -62,13 +69,13 @@ namespace VATCalculator.Controllers
         /// </summary>
         /// <param name="percentVAT">VAT percentile value</param>
         /// <param name="total">Price with VAT included</param>
-        /// <returns>test return CalcByTotal</returns>
+        /// <returns>PriceModel instance with all VAT calculated values</returns>
         [HttpGet("CalcByTotal")]
         public ActionResult<PriceModel> CalcByTotal(
-            [FromQuery, PositiveDecimalAttribute(ErrorMessage = "VAT percentile must be a number greater than zero")]
+            [FromQuery, PositiveDecimal(ErrorMessage = "VAT percentile must be a number greater than zero")]
             decimal percentVAT,
 
-            [FromQuery, PositiveDecimalAttribute(ErrorMessage = "Price total must be a number greater than zero")]
+            [FromQuery, PositiveDecimal(ErrorMessage = "Price total must be a number greater than zero")]
             decimal total)
         {
             var priceItem = _priceCalculatorRepository.CalcByTotal(percentVAT, total);

@@ -1,11 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace VATCalculator.Validation
 {
+    /// <summary>
+    /// Validation atributte for monetary decimal values
+    /// </summary>
     public class PositiveDecimalAttribute : ValidationAttribute
     {
-        public override bool IsValid(object value)
+        /// <summary>
+        /// Validity check for positive, non-nullable decimal
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public override bool IsValid(object? value)
         {
+            if (value == null) return false;
+
             if (value is decimal decimalValue)
             {
                 return decimalValue > 0;
