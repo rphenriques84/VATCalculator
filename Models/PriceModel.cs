@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿//using System.ComponentModel.DataAnnotations;
 
 namespace VATCalculator.Models
 {
+    /// <summary>
+    /// Model for display of price VAT related values
+    /// </summary>
     public class PriceModel
     {
         /// <summary>
