@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VATCalculator</name>
+    </assembly>
+    <members>
+        <member name="M:VATCalculator.Controllers.PriceController.CalcByPriceBase(System.Decimal,System.Decimal)">
+            <summary>
+            Calculate VAT amount and price total from base price and VAT percentile
+            </summary>
+            <param name="percentVAT">VAT percentile value</param>
+            <param name="priceBase">Price without VAT included</param>
+            <returns>test return CalcByPriceBase</returns>
+        </member>
+        <member name="M:VATCalculator.Controllers.PriceController.CalcByVatAmount(System.Decimal,System.Decimal)">
+            <summary>
+            Calculate base price and price total from VAT amount and VAT percentile
+            </summary>
+            <param name="percentVAT">VAT percentile value</param>
+            <param name="vatAmount">VAT monetary amount value</param>
+            <returns>test return CalcByVatAmount</returns>
+        </member>
+        <member name="M:VATCalculator.Controllers.PriceController.CalcByTotal(System.Decimal,System.Decimal)">
+            <summary>
+            Calculate base price and VAT amount from price total and VAT percentile
+            </summary>
+            <param name="percentVAT">VAT percentile value</param>
+            <param name="total">Price with VAT included</param>
+            <returns>test return CalcByTotal</returns>
+        </member>
+        <member name="P:VATCalculator.Models.PriceModel.PriceBase">
+            <summary>
+            Total monetary value without VAT
+            </summary>
+        </member>
+        <member name="P:VATCalculator.Models.PriceModel.VatAmount">
+            <summary>
+            VAT monetary value
+            </summary>
+        </member>
+        <member name="P:VATCalculator.Models.PriceModel.PriceTotal">
+            <summary>
+            Total monetary value with VAT
+            </summary>
+        </member>
+    </members>
+</doc>
